@@ -10,6 +10,7 @@
           <thead>
             <tr>
               <th class="text-left">Pedido</th>
+              <th class="text-left">Valor</th>
               <th class="text-right">Status</th>
               <th class="text-right">Ação</th>
             </tr>
@@ -17,6 +18,7 @@
             <tbody>
               <tr v-for="(bur, id) in burgers" :key="id">
                 <td class="text-left">{{ bur.id }}</td>
+                <td class="text-left">R$ {{ bur.totalOrder }}</td>
                 <td class="text-right">{{ bur.status }}</td>
                 <td class="text-right">
                   <!-- <q-btn  class="rounded-borders" style="border-radius:50%; color: red; width: 10px;"> -->

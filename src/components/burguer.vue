@@ -1,10 +1,10 @@
 <template>
-  <div class="q-mx-lg">
+  <div class="q-px-lg" style="background:#FFF">
     <span class="flex q-ml-md">
       <h3 class="q-ml-lg q-mx-ms">Burguers<q-img src="../static/burguer.webp" style="height: 48px; width:48px; border-radius:50%" class="q-ml-md"/></h3>
     </span>
     <q-separator />
-    <div class="initial">
+    <div class="initial q-px-lg">
       <q-scroll-area class="q-mr-md q-mt-lg full-height scroll-y">
 
         <h5 class="q-ma-lg">
@@ -16,9 +16,12 @@
             :key="id"
             class="flex column items-center justify-center q-mr-lg q-mt-sm mobile">
             <q-img :src="pao.image" style="width:100px" class="q-mb-md"/>
-            <input type="checkbox" name="pao" v-model="paes" :value="pao"/>
+            <div class="flex align-items-center justify-center checkbox">
+              <input type="checkbox" name="pao" v-model="paes" :value="pao" class="q-mr-sm"/>
+              <span>R$ {{ pao.price }}</span>
+            </div>
               <!-- <q-icon name="lunch_dining" size="50px" color="grey"/> -->
-            <span style="margin-top:20px">{{ pao.tipo }}</span>
+            <span>{{ pao.tipo }}</span>
           </q-card>
         </div>
         <h5 class="q-ma-lg">
@@ -53,38 +56,46 @@
         </div>
         <!-- {{ { carnes, opcionais, paes} }} -->
       </q-scroll-area>
-      <q-item-section style="border:1px solid #ebebeb; height: 550px" class="flex justify-between q-mt-lg">
+      <q-item-section  v-if="total > 0" style="border:1px solid #ebebeb; min-height: 550px;" class="flex justify-between q-mt-lg">
         <q-list>
-          <q-item v-for="pao in paes" :key="pao.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb">
+          <q-item v-for="pao in paes" :key="pao.id" class="flex q-ma-sm" style="border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
             <q-img :src="pao.image" style="width:50px;"/>
             <div class="flex column q-pl-md">
               <span class="flex align-center">{{pao.tipo}}</span>
               <span>R$ {{ pao.price }}</span>
             </div>
           </q-item>
-          <q-item v-for="carne in carnes" :key="carne.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb">
+          <q-item v-for="carne in carnes" :key="carne.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
             <q-img :src="carne.image" style="width:50px;"/>
             <div class="flex column q-pl-md">
               <span class="flex align-center">{{carne.tipo}}</span>
               <span>R$ {{ carne.price }}</span>
             </div>
           </q-item>
-          <q-item v-for="item in opcionais" :key="item.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb">
-            <q-img :src="item.image" style="width:50px;"/>
-            <div class="flex column q-pl-md">
-              <span class="flex align-center">{{item.tipo}}</span>
+          <q-item v-for="item in opcionais" :key="item.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
+            <div class="flex row q-pl-md">
+              <span class="flex align-center q-mr-md">{{item.tipo}}</span>
               <span>R$ {{ item.price }}</span>
             </div>
           </q-item>
         </q-list>
-        <q-btn
-          class="q-ma-md send"
-          style="height:70px"
-          color="green"
-          @click.prevent="createOrder()">Enviar<q-icon
-          name="send"
-          style="margin-left:10px;"/></q-btn>
+        <div v-if="total != 0" class="flex column q-mb-sm">
+          <div class="flex justify-around q-mb-md">
+            <span style="fontWeight: bold; fontSize: 20px">Total</span>
+            <span style="fontWeight: bold; fontSize: 20px">R$ {{ total }}</span>
+          </div>
+          <q-btn
+            class="send"
+            style="height:70px"
+            color="green"
+            @click.prevent="createOrder()">Enviar<q-icon
+            name="send"
+            style="margin-left:10px;"/></q-btn>
+        </div>
       </q-item-section>
+      <div v-else class="flex justify-center align-items-center imageOrderNull" style="height:550px;">
+        <q-img src="../static/cloche.jpg" style="width:200px;height:100px"/>
+      </div>
     </div>
   </div>
 
@@ -118,7 +129,8 @@ export default {
       carnesdata: null,
       opcionais: [],
       status: 'Solicitado',
-      msg: null
+      msg: null,
+      totalOrder: 0
     }
   },
   mounted () {
@@ -126,7 +138,13 @@ export default {
   },
   computed: {
     total () {
-      return this.carnes
+      const arrayPaes = this.paes
+      const arrayCarnes = arrayPaes.concat(this.carnes)
+      const arrayOrder = arrayCarnes.concat(this.opcionais)
+      console.log(arrayOrder)
+      return arrayOrder.reduce((acc, item) => {
+        return acc + item.price
+      }, 0)
     }
   },
   methods: {
@@ -143,7 +161,8 @@ export default {
         carne: this.carnes,
         pao: this.paes,
         opcionais: Array.from(this.opcionais),
-        status: 'Solicitado'
+        status: 'Solicitado',
+        totalOrder: this.total
       }
 
       const dataJson = JSON.stringify(data)
@@ -156,7 +175,6 @@ export default {
       console.log(req)
 
       const res = await req.json()
-
       console.log(res)
 
       // this.msg = "Pedido realizado com sucesso!"
@@ -168,6 +186,7 @@ export default {
       this.carnes = ''
       this.paes = ''
       this.opcionais = []
+      this.total = 0
     }
   },
   watch: {
@@ -201,6 +220,20 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.borderCart {
+  border-left: 3px solid black;
+}
+
+.imageOrderNull {
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (max-width: 600px) {
   .mobile {
     width: 100%;
@@ -211,4 +244,6 @@ input[type=checkbox] {
     height: 50px;
   }
 }
+
+// keyframe float cloche
 </style>

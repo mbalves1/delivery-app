@@ -1,7 +1,7 @@
 <template>
   <q-layout>
     <!-- <q-header elevated style="background:#3f3a3f;"> -->
-    <q-header style="background: #ebe9eb; color:#3f3a3f" class="flex">
+    <q-header style="background: rgba(245, 208, 39, 0.47); color:#3f3a3f" class="flex">
       <q-toolbar>
         <q-btn
           flat
@@ -122,7 +122,7 @@ export default defineComponent({
 </script>
 <style>
   .color {
-    background: #ebe9eb;
+    background: rgba(245, 208, 39, 0.47);
     color: #130F13;
   }
 </style>

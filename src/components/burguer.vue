@@ -5,7 +5,7 @@
     </span>
     <q-separator />
     <div class="initial q-px-lg">
-      <q-scroll-area class="q-mr-md q-mt-lg full-height scroll-y">
+      <q-scroll-area class="q-mr-md q-mt-lg full-height">
 
         <h5 class="q-ma-lg">
           Qual o pão:
@@ -33,8 +33,10 @@
             :key="id"
             class="flex column items-center justify-center q-mr-lg q-mt-sm mobile">
             <q-img :src="carne.image" style="width:100px" class="q-mb-md"/>
-            <q-separator class="q-mt-lg"/>
-            <input type="checkbox" name="carne" v-model="carnes" :value="carne">
+            <div class="flex align-items-center justify-center checkbox">
+              <input type="checkbox" name="pao" v-model="carnes" :value="carne" class="q-mr-sm"/>
+              <span>R$ {{ carne.price }}</span>
+            </div>
             <span style="margin-top:20px">{{ carne.tipo }}</span>
           </q-card>
         </div>
@@ -48,9 +50,10 @@
             style="width:150px;height:50px"
             class="flex column items-center justify-center q-ml-lg q-mt-sm">
             <q-separator class="q-mt-lg"/>
-            <div class="flex">
-              <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional" class="width: 50px">
-              <span class="justify-between q-ml-md">{{ opcional.tipo }}</span>
+            <div class="flex align-items-center justify-center checkbox q-pb-sm">
+              <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional" class="align-items-center">
+              <span class="justify-between q-ml-sm align-items-center">R$ {{ opcional.price }}</span>
+              <span class="justify-between q-ml-sm align-items-center">{{ opcional.tipo }}</span>
             </div>
           </q-card>
         </div>
@@ -186,7 +189,7 @@ export default {
       this.carnes = ''
       this.paes = ''
       this.opcionais = []
-      this.total = 0
+      this.totalOrder = 0
     }
   },
   watch: {

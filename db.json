@@ -103,8 +103,8 @@
     {
       "carne": [
         {
-          "id": 1,
-          "tipo": "Maminha",
+          "id": 2,
+          "tipo": "Alcatra",
           "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
           "price": 13
         }
@@ -117,10 +117,16 @@
           "price": 10
         }
       ],
-      "opcionais": [],
+      "opcionais": [
+        {
+          "id": 4,
+          "tipo": "Cebola roxa",
+          "price": 2
+        }
+      ],
       "status": "Solicitado",
-      "totalOrder": 23,
-      "id": 13
+      "totalOrder": 25,
+      "id": 1
     }
   ]
 }

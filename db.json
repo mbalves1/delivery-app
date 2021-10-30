@@ -3,37 +3,53 @@
     "paes": [
       {
         "id": 1,
-        "tipo": "Italiano Branco"
+        "tipo": "Italiano Branco",
+        "image": "https://o.imgac.net/receita/pao-italiano-caseiro-24205.jpg",
+        "price": 10
       },
       {
         "id": 2,
-        "tipo": "3 Queijos"
+        "tipo": "3 Queijos",
+        "image": "https://melepimenta.com/wp-content/uploads/2017/09/Pao-de-parmesao-e-oregano-para-sanduiche-Baixa.jpg",
+        "price": 11
       },
       {
         "id": 3,
-        "tipo": "Parmesão "
+        "tipo": "Parmesão ",
+        "image": "https://s.cornershopapp.com/product-images/1928240.jpg?versionId=nCILkB.18M5x91iAmMQV95hAa3xgcDsG",
+        "price": 12
       },
       {
         "id": 4,
-        "tipo": "Integral"
+        "tipo": "Integral",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnk3w5dNpDEkPzCZiph79bfW8_HIWk-g7MrQ&usqp=CAU",
+        "price": 13
       }
     ],
     "carnes": [
       {
         "id": 1,
-        "tipo": "Maminha"
+        "tipo": "Maminha",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+        "price": 13
       },
       {
         "id": 2,
-        "tipo": "Alcatra"
+        "tipo": "Alcatra",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+        "price": 13
       },
       {
         "id": 3,
-        "tipo": "Picanha"
+        "tipo": "Picanha",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+        "price": 13
       },
       {
         "id": 4,
-        "tipo": "Veggie burger"
+        "tipo": "Veggie burger",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+        "price": 13
       }
     ],
     "opcionais": [

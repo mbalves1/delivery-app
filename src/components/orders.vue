@@ -19,9 +19,9 @@
                 <td class="text-left">{{ bur.id }}</td>
                 <td class="text-right">{{ bur.status }}</td>
                 <td class="text-right">
-                  <q-btn @click="deleteBurger(bur.id)" class="rounded-borders" style="border-radius:50%; color: red; width: 10px;">
-                    <q-icon name="delete_forever" color="black"></q-icon>
-                  </q-btn>
+                  <!-- <q-btn  class="rounded-borders" style="border-radius:50%; color: red; width: 10px;"> -->
+                  <q-icon @click="deleteBurger(bur.id)" name="delete_forever" color="black" size="25px" style="cursor:pointer"></q-icon>
+                  <!-- </q-btn> -->
                 </td>
               </tr>
             </tbody>
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     async getPedidos () {
-      const req = await fetch('http://localhost:3000/burgers')
+      const req = await fetch('http://localhost:3333/burgers')
 
       const data = await req.json()
 
@@ -63,14 +63,14 @@ export default {
       // this.getStatus()
     },
     async getStatus () {
-      const req = await fetch('http://localhost:3000/status')
+      const req = await fetch('http://localhost:3333/status')
 
       const data = await req.json()
 
       this.status = data
     },
     async deleteBurger (id) {
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+      const req = await fetch(`http://localhost:3333/burgers/${id}`, {
         method: 'DELETE'
       })
 
@@ -84,7 +84,7 @@ export default {
 
       const dataJson = JSON.stringify({ status: option })
 
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+      const req = await fetch(`http://localhost:3333/burgers/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson

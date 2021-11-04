@@ -31,37 +31,50 @@
         <q-item-label
           header
         >
-          <!-- <q-img src="../static/burguer.webp" style="height: 48px; width:48px;border-radius:50%"/> -->
-          Burguer Delivery
+          <q-img src="../static/burguer.webp" style="height: 48px; width:48px; border-radius:50%" class="q-mr-md"/>Burguer Delivery
         </q-item-label>
 
-      <!-- <div class="flex column q-ma-lg q-gutter-y-md">
-        <span @click="burguer = true" style="fontSize:20px;" class="text-teal">
-          <q-icon name="lunch_dining" class="q-ma-lg"/>Burguer</span>
-        <span @click="burguer = false" style="fontSize:20px;">
-          <q-icon name="space_dashboard" class="q-ma-lg"/>Orders</span>
-      </div> -->
+        <q-item clickable to="/burguer" v-ripple active-class="my-menu-link" class="q-ml-lg">
+          <q-item-section avatar>
+            <q-icon name="fastfood" />
+          </q-item-section>
+          <q-item-section>
+            Burguer
+          </q-item-section>
+        </q-item>
 
-       <template v-for="(menuItem, index) in menuList" :key="index">
-          <q-item clickable @click="burguer = !burguer" v-ripple class="q-ml-lg">
-            <q-item-section avatar>
-              <q-icon :name="menuItem.icon" />
-            </q-item-section>
-            <q-item-section>
-              {{ menuItem.label }}
-            </q-item-section>
-          </q-item>
-        </template>
+        <q-item clickable to="/orders" v-ripple active-class="my-menu-link" class="q-ml-lg">
+          <q-item-section avatar>
+            <q-icon name="delivery_dining" />
+          </q-item-section>
+          <q-item-section>
+            Pedidos
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable to="/register" v-ripple active-class="my-menu-link" class="q-ml-lg">
+          <q-item-section avatar>
+            <q-icon name="format_list_bulleted" />
+          </q-item-section>
+          <q-item-section>
+            Cadastro
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable to="/dashboard" v-ripple active-class="my-menu-link" class="q-ml-lg">
+          <q-item-section avatar>
+            <q-icon name="space_dashboard" />
+          </q-item-section>
+          <q-item-section>
+            Dashboard
+          </q-item-section>
+        </q-item>
 
       </q-list>
     </q-drawer>
 
     <q-page-container>
-      <router-view>
-        <burguer v-if="burguer"></burguer>
-        <orders v-if="!burguer"></orders>
-
-      </router-view>
+      <router-view></router-view>
     </q-page-container>
   </q-layout>
 </template>
@@ -69,22 +82,23 @@
 <script>
 import { ref, defineComponent } from 'vue'
 import {
-// QImg
-// QTabs,
-// QTab
 } from 'quasar'
-import Burguer from 'src/components/burguer.vue'
-import Orders from 'src/components/orders.vue'
 
 const menuList = [
   {
     icon: 'fastfood',
     label: 'Burguer',
-    separator: false
+    separator: false,
+    link: '/burguer'
   },
   {
     icon: 'delivery_dining',
     label: 'Pedidos',
+    separator: false
+  },
+  {
+    icon: 'delivery_dining',
+    label: 'Dashboard',
     separator: false
   }
 ]
@@ -93,16 +107,23 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    // QImg,
-    Burguer,
-    Orders
-    // QTabs,
-    // QTab
   },
 
   data () {
     return {
-      burguer: true
+      burguer: true,
+      activeTabs: 'Burgers'
+    }
+  },
+
+  methods: {
+    tabs (event) {
+      const tb = this.menuList.map((item, index) => {
+        console.log(index)
+        return item.label
+      })
+      console.log(tb.index, event.target.value)
+      return true
     }
   },
 

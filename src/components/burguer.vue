@@ -10,37 +10,30 @@
         <h5 class="q-ma-lg">
           Qual o pão:
         </h5>
-        <div class="flex">
-          <q-card
-            v-for="(pao, id) in paodata"
-            :key="id"
-            class="flex column items-center justify-center q-mr-lg q-mt-sm mobile">
-            <q-img :src="pao.image" style="width:100px" class="q-mb-md"/>
-            <div class="flex align-items-center justify-center checkbox">
-              <input type="checkbox" name="pao" v-model="paes" :value="pao" class="q-mr-sm"/>
-              <span>R$ {{ pao.price }}</span>
-            </div>
-              <!-- <q-icon name="lunch_dining" size="50px" color="grey"/> -->
-            <span>{{ pao.tipo }}</span>
-          </q-card>
-        </div>
+        <item-card
+          v-for="(pao, id) in paodata"
+          :key="id"
+          :valueprice="pao.price"
+          name="pao"
+          :nameproduct="pao.tipo"
+          :image="pao.image"
+          @click="cardTal(paes, pao)"
+        />
         <h5 class="q-ma-lg">
           Qual a carne:
         </h5>
-        <div class="flex">
-          <q-card
-            v-for="(carne, id) in carnesdata"
-            :key="id"
-            class="flex column items-center justify-center q-mr-lg q-mt-sm mobile">
-            <q-img :src="carne.image" style="width:100px" class="q-mb-md"/>
-            <div class="flex align-items-center justify-center checkbox">
-              <input type="checkbox" name="pao" v-model="carnes" :value="carne" class="q-mr-sm"/>
-              <span>R$ {{ carne.price }}</span>
-            </div>
-            <span style="margin-top:20px">{{ carne.tipo }}</span>
-          </q-card>
-        </div>
-        <h5 class="q-ma-lg">
+        <item-card
+          v-for="(carne, id) in carnesdata"
+          :key="id"
+          :value="carnes"
+          :valueprice="carne.price"
+          :array="carnes"
+          :name="carne"
+          :nameproduct="carne.tipo"
+          :image="carne.image"
+          @click="cardTal(carnes, carne)"
+        />
+        <h5 class="q-ma-lg q-px-lg">
           Adicionais:
         </h5>
         <div class="flex">
@@ -48,7 +41,8 @@
             v-for="(opcional, id) in opcionaisdata"
             :key="id"
             style="width:150px;height:50px"
-            class="flex column items-center justify-center q-ml-lg q-mt-sm">
+            class="flex column items-center justify-center q-ml-lg q-mt-sm"
+            @click="cardTal(opcional)">
             <q-separator class="q-mt-lg"/>
             <div class="flex align-items-center justify-center checkbox q-pb-sm">
               <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional" class="align-items-center">
@@ -59,30 +53,33 @@
         </div>
         <!-- {{ { carnes, opcionais, paes} }} -->
       </q-scroll-area>
-      <q-item-section  v-if="total > 0" style="border:1px solid #ebebeb; min-height: 550px;" class="flex justify-between q-mt-lg">
-        <q-list>
-          <q-item v-for="pao in paes" :key="pao.id" class="flex q-ma-sm" style="border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
+      <q-item-section  v-if="true" style="border:1px solid #ebebeb; min-height: 650px; background:rgb(233, 233, 233);" class="flex justify-between q-mt-lg">
+        <q-item-label class="q-pa-md" style="fontSize:20px;">Carrinho
+          <q-separator class="q-mt-md"></q-separator>
+        </q-item-label>
+        <q-list class="scrollLits">
+          <q-item v-for="pao in paes" :key="pao.id" class="flex q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
             <q-img :src="pao.image" style="width:50px;"/>
             <div class="flex column q-pl-md">
               <span class="flex align-center">{{pao.tipo}}</span>
               <span>R$ {{ pao.price }}</span>
             </div>
           </q-item>
-          <q-item v-for="carne in carnes" :key="carne.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
+          <q-item v-for="carne in carnes" :key="carne.id" class="flex border q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
             <q-img :src="carne.image" style="width:50px;"/>
             <div class="flex column q-pl-md">
               <span class="flex align-center">{{carne.tipo}}</span>
               <span>R$ {{ carne.price }}</span>
             </div>
           </q-item>
-          <q-item v-for="item in opcionais" :key="item.id" class="flex border q-ma-sm" style="border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
+          <q-item v-for="item in opcionais" :key="item.id" class="flex border q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
             <div class="flex row q-pl-md">
               <span class="flex align-center q-mr-md">{{item.tipo}}</span>
               <span>R$ {{ item.price }}</span>
             </div>
           </q-item>
         </q-list>
-        <div v-if="total != 0" class="flex column q-mb-sm">
+        <div v-if="true" class="flex column q-mb-sm">
           <div class="flex justify-around q-mb-md">
             <span style="fontWeight: bold; fontSize: 20px">Total</span>
             <span style="fontWeight: bold; fontSize: 20px">R$ {{ total }}</span>
@@ -110,17 +107,17 @@ import {
   QCard,
   QSeparator,
   QImg
-  // QRadio,
-  // QInput
 } from 'quasar'
+
+import ItemCard from './itemCard.vue/itemCard.vue'
 
 export default {
   components: {
     QCard,
     QSeparator,
-    QImg
-    // QInput
-    // QRadio
+    QImg,
+    ItemCard
+
   },
   data () {
     return {
@@ -133,7 +130,8 @@ export default {
       opcionais: [],
       status: 'Solicitado',
       msg: null,
-      totalOrder: 0
+      totalOrder: 0,
+      arrayPedido: []
     }
   },
   mounted () {
@@ -151,6 +149,9 @@ export default {
     }
   },
   methods: {
+    cardTal (card, item) {
+      card.push(item)
+    },
     async getIngredients () {
       const req = await fetch('http://localhost:3333/ingredientes')
       console.log(req)
@@ -160,6 +161,8 @@ export default {
       this.opcionaisdata = data.opcionais
     },
     async createOrder (event) {
+      // this.paes.push(this.cardTal)
+      console.log(this.arrayPedido)
       const data = {
         carne: this.carnes,
         pao: this.paes,
@@ -175,10 +178,8 @@ export default {
         headers: { 'Content-Type': 'application/json' },
         body: dataJson
       })
-      console.log(req)
 
-      const res = await req.json()
-      console.log(res)
+      await req.json()
 
       // this.msg = "Pedido realizado com sucesso!"
 
@@ -203,10 +204,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mobile {
-  width:130px;
-  height:190px;
-}
 
 .hover:hover {
   background: rgb(233, 233, 233);

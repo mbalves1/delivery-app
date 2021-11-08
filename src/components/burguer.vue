@@ -10,29 +10,35 @@
         <h5 class="q-ma-lg">
           Qual o pão:
         </h5>
-        <item-card
-          v-for="(pao, id) in paodata"
-          :key="id"
-          :valueprice="pao.price"
-          name="pao"
-          :nameproduct="pao.tipo"
-          :image="pao.image"
-          @click="cardTal(paes, pao)"
-        />
+        <div class="flex q-ml-md">
+          <item-card
+            v-for="(pao, id) in paodata"
+            :key="id"
+            :valueprice="pao.price"
+            name="pao"
+            :nameproduct="pao.tipo"
+            :image="pao.image"
+            @click="cardTal(paes, pao)"
+            class="flex row"
+          />
+        </div>
+
         <h5 class="q-ma-lg">
           Qual a carne:
         </h5>
-        <item-card
-          v-for="(carne, id) in carnesdata"
-          :key="id"
-          :value="carnes"
-          :valueprice="carne.price"
-          :array="carnes"
-          :name="carne"
-          :nameproduct="carne.tipo"
-          :image="carne.image"
-          @click="cardTal(carnes, carne)"
-        />
+        <div class="flex q-mx-md">
+          <item-card
+            v-for="(carne, id) in carnesdata"
+            :key="id"
+            :value="carnes"
+            :valueprice="carne.price"
+            :array="carnes"
+            :name="carne"
+            :nameproduct="carne.tipo"
+            :image="carne.image"
+            @click="cardTal(carnes, carne)"
+          />
+        </div>
         <h5 class="q-ma-lg q-px-lg">
           Adicionais:
         </h5>
@@ -53,16 +59,17 @@
         </div>
         <!-- {{ { carnes, opcionais, paes} }} -->
       </q-scroll-area>
-      <q-item-section  v-if="true" style="border:1px solid #ebebeb; min-height: 650px; background:rgb(233, 233, 233);" class="flex justify-between q-mt-lg">
+      <q-item-section  v-if="total != 0" style="border:1px solid #ebebeb; min-height: 650px; background:rgb(233, 233, 233);" class="flex justify-between q-mt-lg">
         <q-item-label class="q-pa-md" style="fontSize:20px;">Carrinho
           <q-separator class="q-mt-md"></q-separator>
         </q-item-label>
         <q-list class="scrollLits">
-          <q-item v-for="pao in paes" :key="pao.id" class="flex q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
+          <q-item v-for="(pao, index) in paes" :key="index" class="flex q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
             <q-img :src="pao.image" style="width:50px;"/>
             <div class="flex column q-pl-md">
               <span class="flex align-center">{{pao.tipo}}</span>
               <span>R$ {{ pao.price }}</span>
+              <q-icon @click="remove(paes, index)" name="cancel"/>
             </div>
           </q-item>
           <q-item v-for="carne in carnes" :key="carne.id" class="flex border q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
@@ -151,6 +158,9 @@ export default {
   methods: {
     cardTal (card, item) {
       card.push(item)
+    },
+    remove (card, index) {
+      card.splice(index, 1)
     },
     async getIngredients () {
       const req = await fetch('http://localhost:3333/ingredientes')

@@ -42,20 +42,18 @@
         <h5 class="q-ma-lg q-px-lg">
           Adicionais:
         </h5>
-        <div class="flex">
-          <q-card
+        <div class="flex q-mx-md q-mb-md">
+          <item-card
             v-for="(opcional, id) in opcionaisdata"
             :key="id"
-            style="width:150px;height:50px"
-            class="flex column items-center justify-center q-ml-lg q-mt-sm"
-            @click="cardTal(opcional)">
-            <q-separator class="q-mt-lg"/>
-            <div class="flex align-items-center justify-center checkbox q-pb-sm">
-              <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional" class="align-items-center">
-              <span class="justify-between q-ml-sm align-items-center">R$ {{ opcional.price }}</span>
-              <span class="justify-between q-ml-sm align-items-center">{{ opcional.tipo }}</span>
-            </div>
-          </q-card>
+            :value="opcionais"
+            :valueprice="opcional.price"
+            :array="opcionais"
+            :name="opcional"
+            :nameproduct="opcional.tipo"
+            :image="opcional.image"
+            @click="cardTal(opcionais, opcional)"
+          />
         </div>
         <!-- {{ { carnes, opcionais, paes} }} -->
       </q-scroll-area>
@@ -64,27 +62,30 @@
           <q-separator class="q-mt-md"></q-separator>
         </q-item-label>
         <q-list class="scrollLits">
-          <q-item v-for="(pao, index) in paes" :key="index" class="flex q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
-            <q-img :src="pao.image" style="width:50px;"/>
-            <div class="flex column q-pl-md">
-              <span class="flex align-center">{{pao.tipo}}</span>
-              <span>R$ {{ pao.price }}</span>
-              <q-icon @click="remove(paes, index)" name="cancel"/>
-            </div>
-          </q-item>
-          <q-item v-for="carne in carnes" :key="carne.id" class="flex border q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
-            <q-img :src="carne.image" style="width:50px;"/>
-            <div class="flex column q-pl-md">
-              <span class="flex align-center">{{carne.tipo}}</span>
-              <span>R$ {{ carne.price }}</span>
-            </div>
-          </q-item>
-          <q-item v-for="item in opcionais" :key="item.id" class="flex border q-ma-sm" style="background:#fff;border:1px solid #ebebeb; border-left: 5px solid #FFDB3D; border-radius: 5px;">
-            <div class="flex row q-pl-md">
-              <span class="flex align-center q-mr-md">{{item.tipo}}</span>
-              <span>R$ {{ item.price }}</span>
-            </div>
-          </q-item>
+          <cart
+            v-for="(pao, index) in paes"
+            :key="index"
+            :image="pao.image"
+            :price="pao.price"
+            :tipo="pao.tipo"
+            @remove-item="remove(paes, index)"
+          />
+          <cart
+            v-for="(carne, index) in carnes"
+            :key="index"
+            :image="carne.image"
+            :price="carne.price"
+            :tipo="carne.tipo"
+            @remove-item="remove(carnes, index)"
+          />
+          <cart
+            v-for="(item, index) in opcionais"
+            :key="index"
+            :image="item.image"
+            :price="item.price"
+            :tipo="item.tipo"
+            @remove-item="remove(opcionais, index)"
+          />
         </q-list>
         <div v-if="true" class="flex column q-mb-sm">
           <div class="flex justify-around q-mb-md">
@@ -111,19 +112,19 @@
 <script>
 // import { ref } from 'vue'
 import {
-  QCard,
   QSeparator,
   QImg
 } from 'quasar'
 
-import ItemCard from './itemCard.vue/itemCard.vue'
+import ItemCard from './itemCard/itemCard.vue'
+import Cart from './Cart/cart.vue'
 
 export default {
   components: {
-    QCard,
     QSeparator,
     QImg,
-    ItemCard
+    ItemCard,
+    Cart
 
   },
   data () {

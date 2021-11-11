@@ -71,8 +71,8 @@ export default {
 }
 
 .mobile:hover {
-  box-shadow: none;
-  border: 1px solid rgb(201, 201, 201);
+  // box-shadow: none;
+  // border: 1px solid rgb(201, 201, 201);
 }
 
 </style>

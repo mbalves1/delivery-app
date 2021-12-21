@@ -12,14 +12,16 @@
               <th class="text-left">Pedido</th>
               <th class="text-left">Valor</th>
               <th class="text-right">Status</th>
+              <th class="text-right">Data</th>
               <th class="text-right">Ação</th>
             </tr>
           </thead>
             <tbody>
-              <tr v-for="(bur, id) in burgers" :key="id">
+              <tr v-for="(bur, id) in burgers" :key="`bleguer${id}`">
                 <td class="text-left">{{ bur.id }}</td>
                 <td class="text-left">R$ {{ bur.totalOrder }}</td>
                 <td class="text-right">{{ bur.status }}</td>
+                <td class="text-right">{{ bur.dateSale }}</td>
                 <td class="text-right">
                   <!-- <q-btn  class="rounded-borders" style="border-radius:50%; color: red; width: 10px;"> -->
                   <q-icon @click="deleteBurger(bur.id)" name="delete_forever" color="black" size="25px" style="cursor:pointer"></q-icon>

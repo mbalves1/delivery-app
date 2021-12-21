@@ -101,48 +101,68 @@
   ],
   "burgers": [
     {
-      "carne": [],
-      "pao": [
+      "carne": [
         {
           "id": 2,
-          "tipo": "3 Queijos",
-          "image": "https://melepimenta.com/wp-content/uploads/2017/09/Pao-de-parmesao-e-oregano-para-sanduiche-Baixa.jpg",
-          "price": 11
+          "tipo": "Alcatra",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+          "price": 13
         }
       ],
-      "opcionais": [],
-      "status": "Solicitado",
-      "totalOrder": 11,
-      "id": 8
-    },
-    {
-      "carne": "",
-      "pao": "",
-      "opcionais": [],
-      "status": "Solicitado",
-      "totalOrder": 11,
-      "id": 9
-    },
-    {
-      "carne": [],
       "pao": [
         {
-          "id": 3,
-          "tipo": "Parmesão ",
-          "image": "https://s.cornershopapp.com/product-images/1928240.jpg?versionId=nCILkB.18M5x91iAmMQV95hAa3xgcDsG",
-          "price": 12
+          "id": 1,
+          "tipo": "Italiano Branco",
+          "image": "https://o.imgac.net/receita/pao-italiano-caseiro-24205.jpg",
+          "price": 10
         }
       ],
-      "opcionais": [],
+      "opcionais": [
+        {
+          "id": 2,
+          "tipo": "Cheddar",
+          "price": 2
+        }
+      ],
       "status": "Solicitado",
-      "totalOrder": 12,
-      "id": 10
+      "totalOrder": 25,
+      "dateSale": "17/11/2021",
+      "id": 26
     },
     {
       "carne": [
         {
+          "id": 2,
+          "tipo": "Alcatra",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+          "price": 13
+        }
+      ],
+      "pao": [
+        {
           "id": 4,
-          "tipo": "Veggie burger",
+          "tipo": "Integral",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnk3w5dNpDEkPzCZiph79bfW8_HIWk-g7MrQ&usqp=CAU",
+          "price": 13
+        }
+      ],
+      "opcionais": [
+        {
+          "id": 1,
+          "tipo": "Bacon",
+          "price": 2
+        }
+      ],
+      "status": "Solicitado",
+      "totalOrder": 28,
+      "dateSale": "17/11/2021",
+      "id": 27
+    },
+    {
+      "carne": [
+        {
+          "id": 2,
+          "tipo": "Alcatra",
           "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
           "price": 13
         }
@@ -162,14 +182,118 @@
           "price": 2
         },
         {
-          "id": 4,
-          "tipo": "Tomate",
+          "id": 2,
+          "tipo": "Cheddar",
           "price": 2
         }
       ],
       "status": "Solicitado",
       "totalOrder": 29,
-      "id": 11
+      "dateSale": "17/11/2021",
+      "id": 28
+    },
+    {
+      "carne": [
+        {
+          "id": 2,
+          "tipo": "Alcatra",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FJSP7gzNZG1Sq_fgfp2dSgNkVpjqtj1YA&usqp=CAU",
+          "price": 13
+        }
+      ],
+      "pao": [
+        {
+          "id": 4,
+          "tipo": "Integral",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnk3w5dNpDEkPzCZiph79bfW8_HIWk-g7MrQ&usqp=CAU",
+          "price": 13
+        }
+      ],
+      "opcionais": [],
+      "status": "Solicitado",
+      "totalOrder": 26,
+      "dateSale": "17/11/2021",
+      "id": 29
+    },
+    {
+      "carne": [],
+      "pao": [
+        {
+          "id": 1,
+          "tipo": "Italiano Branco",
+          "image": "https://o.imgac.net/receita/pao-italiano-caseiro-24205.jpg",
+          "price": 10
+        }
+      ],
+      "opcionais": [],
+      "status": "Solicitado",
+      "totalOrder": 10,
+      "dateSale": "18/11/2021",
+      "id": 30
+    },
+    {
+      "carne": [],
+      "pao": [
+        {
+          "id": 1,
+          "tipo": "Italiano Branco",
+          "image": "https://o.imgac.net/receita/pao-italiano-caseiro-24205.jpg",
+          "price": 10
+        }
+      ],
+      "opcionais": [],
+      "status": "Solicitado",
+      "totalOrder": 10,
+      "dateSale": "18/11/2021",
+      "id": 31
+    },
+    {
+      "carne": [],
+      "pao": [
+        {
+          "id": 4,
+          "tipo": "Integral",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnk3w5dNpDEkPzCZiph79bfW8_HIWk-g7MrQ&usqp=CAU",
+          "price": 13
+        }
+      ],
+      "opcionais": [],
+      "status": "Solicitado",
+      "totalOrder": 13,
+      "dateSale": "18/11/2021",
+      "id": 32
+    },
+    {
+      "carne": [],
+      "pao": [
+        {
+          "id": 4,
+          "tipo": "Integral",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnk3w5dNpDEkPzCZiph79bfW8_HIWk-g7MrQ&usqp=CAU",
+          "price": 13
+        }
+      ],
+      "opcionais": [],
+      "status": "Solicitado",
+      "totalOrder": 13,
+      "dateSale": "18/11/2021",
+      "id": 33
+    },
+    {
+      "carne": [],
+      "pao": [
+        {
+          "id": 2,
+          "tipo": "3 Queijos",
+          "image": "https://melepimenta.com/wp-content/uploads/2017/09/Pao-de-parmesao-e-oregano-para-sanduiche-Baixa.jpg",
+          "price": 11
+        }
+      ],
+      "opcionais": [],
+      "status": "Solicitado",
+      "totalOrder": 11,
+      "dateSale": "19/11/2021",
+      "id": 34
     }
   ]
 }

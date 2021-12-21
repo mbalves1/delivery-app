@@ -16,6 +16,7 @@
     "json": "^11.0.0",
     "quasar": "^2.0.0",
     "server": "^1.0.36",
+    "vue-moment": "^4.1.0",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {

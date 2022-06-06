@@ -6,18 +6,24 @@
   "author": "Murilo <mbalves1@outlook.com>",
   "private": true,
   "scripts": {
+    "dev": "script",
     "lint": "eslint --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "script": "json-server db.json -p 3333 -w"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "@types/dotenv": "^8.2.0",
+    "axios": "^0.24.0",
+    "axios-endpoints": "^1.0.2",
     "core-js": "^3.6.5",
     "json": "^11.0.0",
-    "quasar": "^2.0.0",
+    "quasar": "^2.3.4",
     "server": "^1.0.36",
+    "upgrade": "^1.1.0",
     "vue-moment": "^4.1.0",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
